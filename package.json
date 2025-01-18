@@ -1,0 +1,19 @@
+{
+  "private": "true",
+  "type": "module",
+  "scripts": {
+    "serve": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "highlight.js": "^11.11.1",
+    "localforage": "^1.10.0",
+    "quill": "^2.0.3",
+    "quill-blot-formatter-mobile": "^1.1.2",
+    "quill-table-better": "^1.1.5"
+  },
+  "devDependencies": {
+    "@webxdc/vite-plugins": "^1.5.1",
+    "vite": "^6.0.7"
+  }
+}
