@@ -65,7 +65,24 @@ const toolbarOptions = [
   ["clean", "clear"],
 ];
 
-function startEditor() {
+export const baseConfig = {
+  placeholder: "HTML",
+  modules: {
+    history: {},
+    toolbar: {
+      container: toolbarOptions,
+    },
+    syntax: { hljs },
+    table: false, // disable table module
+    "table-better": {
+      toolbarTable: true,
+    },
+    blotFormatter: {},
+  },
+  theme: "snow",
+}
+
+function startEditor(holder, config) {
   Quill.register(
     {
       "modules/table-better": QuillTableBetter,
@@ -80,28 +97,13 @@ function startEditor() {
   icons["redo"] = redoImg;
   icons["clear"] = clearImg;
 
-  const editorDiv = document.getElementById("editor");
-  const editor = new Quill(editorDiv, {
-    placeholder: "HTML",
-    modules: {
-      history: {},
-      toolbar: {
-        container: toolbarOptions,
-        handlers: {
-          undo: undo,
-          redo: redo,
-          clear: clear,
-        },
-      },
-      syntax: { hljs },
-      table: false, // disable table module
-      "table-better": {
-        toolbarTable: true,
-      },
-      blotFormatter: {},
-    },
-    theme: "snow",
-  });
+  config.modules.toolbar.handlers = {
+    undo: undo,
+    redo: redo,
+    clear: clear,
+  }
+
+  const editor = new Quill(holder, config);
 
   function undo() {
     editor.history.undo();
@@ -114,4 +116,6 @@ function startEditor() {
   function clear() {
     editor.setContents([{ insert: "\n" }]);
   }
+
+  return editor;
 }
