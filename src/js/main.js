@@ -2,6 +2,7 @@ import { readableSize } from "./util.js";
 import localforage from "localforage";
 import {
   startEditor,
+  baseConfig,
   quillStyles,
   tableSyles,
   highlightStyles,
@@ -13,7 +14,16 @@ const fileBtn = document.getElementById("fileBtn");
 const fileText = document.getElementById("fileText");
 let currentFile = null;
 
-startEditor();
+if (window.webxdc.arcanechat) {
+  startEditor("#editor", baseConfig);
+} else {
+  subjectInput.placeholder += " (Not supported)";
+  subjectInput.disabled = true;
+  baseConfig.placeholder += " (Not supported)";
+  const editor = startEditor("#editor", baseConfig);
+  editor.disable();
+}
+
 const htmlDiv = document.getElementById("editor").firstChild;
 
 loadSavedData();
