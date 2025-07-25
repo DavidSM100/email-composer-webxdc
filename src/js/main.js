@@ -47,6 +47,11 @@ async function loadSavedData() {
 
 fileBtn.onclick = async () => {
   if (currentFile) {
+    try {
+      await localforage.removeItem("file");
+    } catch (err) {
+      console.log(err);
+    }
     currentFile = null;
     fileBtn.textContent = "Attach file";
     fileName.textContent = "";
@@ -54,14 +59,17 @@ fileBtn.onclick = async () => {
   } else {
     const file = (await window.webxdc.importFiles({}))[0];
     if (file) {
-      fileName.textContent = file.name;
-      fileSize.textContent = readableSize(file.size);
+      try {
+        await localforage.setItem("file", file);
+      } catch (err) {
+        console.log(err);
+      }
       currentFile = file;
       fileBtn.textContent = "Remove";
+      fileName.textContent = file.name;
+      fileSize.textContent = readableSize(file.size);
     }
   }
-
-  localforage.setItem("file", currentFile);
 };
 
 subjectInput.oninput = () => {
