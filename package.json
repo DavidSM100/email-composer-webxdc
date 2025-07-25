@@ -10,10 +10,10 @@
     "localforage": "^1.10.0",
     "quill": "^2.0.3",
     "quill-blot-formatter-mobile": "^1.1.2",
-    "quill-table-better": "^1.1.5"
+    "quill-table-better": "^1.2.1"
   },
   "devDependencies": {
     "@webxdc/vite-plugins": "^1.5.1",
-    "vite": "^6.0.7"
+    "vite": "^7.0.6"
   }
 }
