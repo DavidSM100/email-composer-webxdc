@@ -82,21 +82,6 @@ textarea.oninput = () => {
   localforage.setItem("text", textarea.value);
 };
 
-const observer = new MutationObserver(saveHtml);
-observer.observe(htmlDiv, {
-  subtree: true,
-  childList: true,
-  attributes: true,
-  characterData: true,
-});
-
-function saveHtml() {
-  if (htmlDiv.classList.contains("ql-blank")) {
-    localforage.setItem("html", "");
-  } else {
-    localforage.setItem("html", htmlDiv.innerHTML);
-  }
-}
 
 document.getElementById("export").onclick = async () => {
   const subject = subjectInput.value;

@@ -22,9 +22,11 @@ import "highlight.js/styles/github-dark.css";
 import undoImg from "../imgs/undo.svg?raw";
 import redoImg from "../imgs/redo.svg?raw";
 import clearImg from "../imgs/clear.svg?raw";
+import saveImg from "../imgs/save.svg?raw";
 import quillStyles from "quill/dist/quill.snow.css?inline";
 import tableSyles from "quill-table-better/dist/quill-table-better.css?inline";
 import highlightStyles from "highlight.js/styles/github-dark.css?inline";
+import localforage from "localforage";
 
 export { startEditor, quillStyles, tableSyles, highlightStyles };
 
@@ -62,7 +64,7 @@ const toolbarOptions = [
   [{ script: "sub" }, { script: "super" }],
   [{ indent: "-1" }, { indent: "+1" }, { direction: "rtl" }, { align: [] }],
 
-  ["clean", "clear"],
+  ["clean", "clear", "save"],
 ];
 
 export const baseConfig = {
@@ -80,7 +82,7 @@ export const baseConfig = {
     blotFormatter: {},
   },
   theme: "snow",
-}
+};
 
 function startEditor(holder, config) {
   Quill.register(
@@ -96,12 +98,14 @@ function startEditor(holder, config) {
   icons["undo"] = undoImg;
   icons["redo"] = redoImg;
   icons["clear"] = clearImg;
+  icons["save"] = saveImg;
 
   config.modules.toolbar.handlers = {
     undo: undo,
     redo: redo,
     clear: clear,
-  }
+    save: save,
+  };
 
   const editor = new Quill(holder, config);
 
@@ -115,6 +119,16 @@ function startEditor(holder, config) {
 
   function clear() {
     editor.setContents([{ insert: "\n" }]);
+    localforage.removeItem("html");
+  }
+
+  function save() {
+    const htmlDiv = document.getElementById("editor").firstChild;
+    if (htmlDiv.classList.contains("ql-blank")) {
+      localforage.removeItem("html");
+    } else {
+      localforage.setItem("html", htmlDiv.innerHTML);
+    }
   }
 
   return editor;
