@@ -6,43 +6,30 @@ body {
 .header {
   margin-bottom: 5px;
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.header input {
-  width: calc(100% - 33px);
-  height: 90%;
-  margin-right: 3px;
-  border: 1px solid #ccc;
+#export {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  background: #4a6cf7;
+  color: white;
+  border: 2px solid #4a6cf7;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  gap: 5px;
 }
 
-.header button {
-  width: 30px;
-  height: 100%;
-}
-
-.header button,
 #fileBtn {
   padding: 5px;
   border: none;
   border-radius: 5px;
   vertical-align: middle;
   background-color: #eee;
-}
-
-.header button img {
-  width: calc(100% - 5px);
-  vertical-align: middle;
-}
-
-.header button:hover,
-#fileBtn:hover {
-  background-color: #ddd;
-}
-
-.header button:active,
-#fileBtn:active {
-  background-color: #ccc;
 }
 
 #subject,

@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="app.css" />
-    <script src="webxdc.js"></script>
-  </head>
-  <body>
-    <div class="header">
-      <button id="export">
-        <img src="imgs/share.svg" alt="share" />
-      </button>
-    </div>
-    <div style="margin-bottom: 5px;">
-      <button id="fileBtn">Attach file</button>
-      <small id="fileText"></small>
-    </div>
-    <input id="subject" type="text" placeholder="Subject" />
-    <textarea id="text" placeholder="Text"></textarea>
-    <div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="app.css" />
+  <script src="webxdc.js"></script>
+</head>
+
+<body>
+  <div class="header">
+    <b>Email Composer</b>
+    <button id="export">
+      Send
+      <img src="imgs/send-horizontal.svg" />
+    </button>
+  </div>
+  <hr>
+  <div style="margin-bottom: 5px;">
+    <button id="fileBtn">Attach file</button>
+    <small id="fileText"></small>
+  </div>
+  <input id="subject" type="text" placeholder="Subject" />
+  <textarea id="text" placeholder="Text"></textarea>
+  <div>
     <div id="editor"></div>
-    </div>
-    <script type="module" src="js/main.js"></script>
-  </body>
+  </div>
+  <script type="module" src="js/main.js"></script>
+</body>
+
 </html>
