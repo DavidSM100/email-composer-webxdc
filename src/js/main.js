@@ -11,7 +11,8 @@ import {
 const subjectInput = document.getElementById("subject");
 const textarea = document.getElementById("text");
 const fileBtn = document.getElementById("fileBtn");
-const fileText = document.getElementById("fileText");
+const fileName = document.getElementById("fileName");
+const fileSize = document.getElementById("fileSize");
 let currentFile = null;
 
 if (window.webxdc.arcanechat) {
@@ -37,7 +38,8 @@ async function loadSavedData() {
   textarea.value = text;
   htmlDiv.innerHTML = html;
   if (file) {
-    fileText.textContent = file.name + ", " + readableSize(file.size);
+    fileName.textContent = file.name;
+    fileSize.textContent = readableSize(file.size);
     currentFile = file;
     fileBtn.textContent = "Remove";
   }
@@ -47,11 +49,13 @@ fileBtn.onclick = async () => {
   if (currentFile) {
     currentFile = null;
     fileBtn.textContent = "Attach file";
-    fileText.textContent = "";
+    fileName.textContent = "";
+    fileSize.textContent = "";
   } else {
     const file = (await window.webxdc.importFiles({}))[0];
     if (file) {
-      fileText.textContent = file.name + ", " + readableSize(file.size);
+      fileName.textContent = file.name;
+      fileSize.textContent = readableSize(file.size);
       currentFile = file;
       fileBtn.textContent = "Remove";
     }

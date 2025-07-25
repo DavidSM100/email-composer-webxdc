@@ -25,18 +25,40 @@ body {
 }
 
 #fileBtn {
+  height: 30px;
   padding: 5px;
   border: none;
   border-radius: 5px;
-  vertical-align: middle;
   background-color: #eee;
+  cursor: pointer;
+}
+
+#fileName {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#fileSize,
+#fileBtn {
+  flex-shrink: 0;
 }
 
 #subject,
-#text {
+#text,
+.file-container {
   width: calc(100% - 6px);
   border: 1px solid #ccc;
   margin-bottom: 5px;
+}
+
+.file-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px;
+  white-space: nowrap;
 }
 
 #subject {
